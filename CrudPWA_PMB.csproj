@@ -1,0 +1,505 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.1.11.1\build\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.props" Condition="Exists('packages\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.1.11.1\build\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.props')" />
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{266E8DCC-8761-4954-BE39-F35C4129BB23}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CrudPWA_PMB</RootNamespace>
+    <AssemblyName>CrudPWA_PMB</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44392</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
+    <DockerLaunchUrl>http://{ServiceIPAddress}</DockerLaunchUrl>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.IdentityModel.Abstractions, Version=6.25.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.IdentityModel.Abstractions.6.25.0\lib\net472\Microsoft.IdentityModel.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.JsonWebTokens, Version=6.25.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.IdentityModel.JsonWebTokens.6.25.0\lib\net472\Microsoft.IdentityModel.JsonWebTokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=6.25.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.IdentityModel.Logging.6.25.0\lib\net472\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=6.25.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.IdentityModel.Tokens.6.25.0\lib\net472\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=6.25.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\System.IdentityModel.Tokens.Jwt.6.25.0\lib\net472\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Client.5.2.9\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.4.7.1\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Cryptography.Algorithms.4.3.1\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.Encodings.Web.4.7.1\lib\net461\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.Json.4.7.2\lib\net461\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Cors, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.Cors.5.2.9\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Core.5.2.9\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Cors.5.2.9\lib\net45\System.Web.Http.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Global.asax" />
+    <Content Include="Models\ModelPosAdmin.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelPosAdmin.edmx</DependentUpon>
+      <LastGenOutput>ModelPosAdmin.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ModelPosAdmin.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelPosAdmin.edmx</DependentUpon>
+      <LastGenOutput>ModelPosAdmin.cs</LastGenOutput>
+    </Content>
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ArticulosController.cs" />
+    <Compile Include="Controllers\DireccionProveedorController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ProveedorController.cs" />
+    <Compile Include="Controllers\UnidadMedidaController.cs" />
+    <Compile Include="Controllers\VentaController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\articulo.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\articulos.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Asociados.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\clasificacion.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\clave_producto_serv.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\cliente.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\compra.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\compra_articulo.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\control_errores.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ctrl_errores.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\direccion.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\direccion_proveedor.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\empleado.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\empresa.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\entidad.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\ArticuloEntiti.cs" />
+    <Compile Include="Models\Entities\DireccionProveedorEntiti.cs" />
+    <Compile Include="Models\Entities\ProveedorEntiti.cs" />
+    <Compile Include="Models\Entities\UnidadMedidaEntiti.cs" />
+    <Compile Include="Models\Entities\UsuariosEntiti.cs" />
+    <Compile Include="Models\Entities\VentaProductoEntiti.cs" />
+    <Compile Include="Models\Entities\VentasEntiti.cs" />
+    <Compile Include="Models\entrada.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\entrada_articulo.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\estadistica.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\estatus.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\exportacion.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\factura.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\factura_articulo.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\factura_venta.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\forma_pago.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\generacion_codigos.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\inventario_articulo.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\inventario_captura.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\inventario_fisico.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\inventario_fisico_articulo.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\kit_articulos.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Logs.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\mes.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\metodo_pago.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelPosAdmin.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelPosAdmin.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelPosAdmin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelPosAdmin.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelPosAdmin.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\moneda.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\movimiento_almacen.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\municipio.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\oferta.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\oferta_articulo.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\orden.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\orden_articulo.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pais.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pedido.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pedido_articulo.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\periodicidad.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\permiso.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pos.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pos_admin_settings.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pos_control.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\precio_temporal.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\productos_sin_iva.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\promocion.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\promocion_articulo.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\proveedor.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\regimen_fiscal.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\salida.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\salida_articulo.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tipo_comprobante.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tipo_relacion.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\unidad_medida.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\uso_cfdi.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usuario.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usuario_permiso.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\venta.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\venta_articulo.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\venta_cancelada.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\venta_cancelada_articulo.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\venta_devolucion.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\venta_devolucion_articulo.cs">
+      <DependentUpon>ModelPosAdmin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\TokenProvider.cs" />
+    <Compile Include="Security\TokenValidationHandler.cs" />
+    <Compile Include="Servicios\ArticulosServices.cs" />
+    <Compile Include="Servicios\DireccionProveedorServices.cs" />
+    <Compile Include="Servicios\LoginServices.cs" />
+    <Compile Include="Servicios\ProveedorServices.cs" />
+    <Compile Include="Servicios\UnidadMedidaServices.cs" />
+    <Compile Include="Servicios\VentaServices.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Dockerfile" />
+    <None Include=".dockerignore">
+      <DependentUpon>Dockerfile</DependentUpon>
+    </None>
+    <EntityDeploy Include="Models\ModelPosAdmin.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelPosAdmin.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ModelPosAdmin.edmx.diagram">
+      <DependentUpon>ModelPosAdmin.edmx</DependentUpon>
+    </Content>
+    <None Include="packages.config" />
+    <Content Include="Security\certificate.p12" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>51351</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44392/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('packages\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.1.11.1\build\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.1.11.1\build\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.props'))" />
+    <Error Condition="!Exists('packages\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.1.11.1\build\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.1.11.1\build\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.targets'))" />
+  </Target>
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="packages\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.1.11.1\build\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.targets" Condition="Exists('packages\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.1.11.1\build\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

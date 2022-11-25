@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AdminModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="articulo">
+    <Key>
+      <PropertyRef Name="cod_barras" />
+    </Key>
+    <Property Name="cod_barras" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="cod_asociado" Type="varchar" MaxLength="15" />
+    <Property Name="id_clasificacion" Type="bigint" Nullable="false" />
+    <Property Name="cod_interno" Type="varchar" MaxLength="15" />
+    <Property Name="descripcion" Type="varchar" MaxLength="80" Nullable="false" />
+    <Property Name="descripcion_corta" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="cantidad_um" Type="decimal" Precision="19" Scale="3" Nullable="false" />
+    <Property Name="id_unidad" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="id_proveedor" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="precio_compra" Type="decimal" Precision="19" Scale="3" Nullable="false" />
+    <Property Name="utilidad" Type="decimal" Precision="19" Scale="3" Nullable="false" />
+    <Property Name="precio_venta" Type="decimal" Precision="19" Scale="3" Nullable="false" />
+    <Property Name="tipo_articulo" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="stock" Type="decimal" Precision="19" Scale="3" Nullable="false" />
+    <Property Name="stock_min" Type="decimal" Precision="19" Scale="3" Nullable="false" />
+    <Property Name="stock_max" Type="decimal" Precision="19" Scale="3" Nullable="false" />
+    <Property Name="iva" Type="decimal" Precision="4" Scale="2" Nullable="false" />
+    <Property Name="kit_fecha_ini" Type="datetime" />
+    <Property Name="kit_fecha_fin" Type="datetime" />
+    <Property Name="articulo_disponible" Type="bit" Nullable="false" />
+    <Property Name="kit" Type="bit" Nullable="false" />
+    <Property Name="fecha_registro" Type="datetime" Nullable="false" />
+    <Property Name="visible" Type="bit" Nullable="false" />
+    <Property Name="puntos" Type="smallint" Nullable="false" />
+    <Property Name="last_update_inventory" Type="datetime" Nullable="false" />
+    <Property Name="cve_producto" Type="varchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <EntityType Name="clasificacion">
+    <Key>
+      <PropertyRef Name="id_clasificacion" />
+    </Key>
+    <Property Name="id_clasificacion" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_clasificacion_dep" Type="bigint" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="nivel_clasificacion" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="direccion_proveedor">
+    <Key>
+      <PropertyRef Name="id_proveedor" />
+    </Key>
+    <Property Name="id_proveedor" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="calle" Type="varchar" MaxLength="100" />
+    <Property Name="no_int" Type="varchar" MaxLength="10" />
+    <Property Name="no_ext" Type="varchar" MaxLength="10" />
+    <Property Name="colonia" Type="varchar" MaxLength="100" />
+    <Property Name="localidad" Type="varchar" MaxLength="100" />
+    <Property Name="id_entidad" Type="smallint" />
+    <Property Name="id_municipio" Type="smallint" />
+    <Property Name="pais" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="cod_postal" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="proveedor">
+    <Key>
+      <PropertyRef Name="id_proveedor" />
+    </Key>
+    <Property Name="id_proveedor" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="rfc" Type="varchar" MaxLength="18" Nullable="false" />
+    <Property Name="razon_social" Type="varchar" MaxLength="80" Nullable="false" />
+    <Property Name="nombre_contacto" Type="varchar" MaxLength="100" />
+    <Property Name="tel_principal" Type="varchar" MaxLength="20" />
+    <Property Name="tel_movil" Type="varchar" MaxLength="30" />
+    <Property Name="e_mail" Type="varchar" MaxLength="80" />
+    <Property Name="estatus" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="fecha_registro" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="unidad_medida">
+    <Key>
+      <PropertyRef Name="id_unidad" />
+    </Key>
+    <Property Name="id_unidad" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="fecha_registro" Type="datetime" Nullable="false" />
+    <Property Name="cve_sat" Type="varchar" MaxLength="5" Nullable="false" />
+  </EntityType>
+  <EntityType Name="venta">
+    <Key>
+      <PropertyRef Name="id_pos" />
+      <PropertyRef Name="id_venta" />
+    </Key>
+    <Property Name="id_pos" Type="int" Nullable="false" />
+    <Property Name="id_venta" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="vendedor" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="folio" Type="bigint" Nullable="false" />
+    <Property Name="fecha_venta" Type="datetime" Nullable="false" />
+    <Property Name="total_vendido" Type="decimal" Precision="19" Scale="3" Nullable="false" />
+    <Property Name="pago_efectivo" Type="decimal" Precision="19" Scale="2" Nullable="false" />
+    <Property Name="pago_cheque" Type="decimal" Precision="19" Scale="3" Nullable="false" />
+    <Property Name="pago_vales" Type="decimal" Precision="19" Scale="2" Nullable="false" />
+    <Property Name="pago_tc" Type="decimal" Precision="19" Scale="2" Nullable="false" />
+    <Property Name="supervisor" Type="varchar" MaxLength="15" />
+    <Property Name="upload" Type="bit" Nullable="false" />
+    <Property Name="num_registros" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="venta_articulo">
+    <Key>
+      <PropertyRef Name="id_pos" />
+      <PropertyRef Name="id_venta" />
+      <PropertyRef Name="no_articulo" />
+    </Key>
+    <Property Name="id_pos" Type="int" Nullable="false" />
+    <Property Name="id_venta" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="no_articulo" Type="bigint" Nullable="false" />
+    <Property Name="cod_barras" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="user_code_bascula" Type="smallint" />
+    <Property Name="cantidad" Type="decimal" Precision="19" Scale="3" Nullable="false" />
+    <Property Name="articulo_ofertado" Type="bit" Nullable="false" />
+    <Property Name="precio_regular" Type="decimal" Precision="19" Scale="3" Nullable="false" />
+    <Property Name="cambio_precio" Type="bit" Nullable="false" />
+    <Property Name="iva" Type="decimal" Precision="4" Scale="3" Nullable="false" />
+    <Property Name="precio_vta" Type="decimal" Precision="19" Scale="3" Nullable="false" />
+    <Property Name="porcent_desc" Type="decimal" Precision="4" Scale="2" Nullable="false" />
+    <Property Name="cant_devuelta" Type="decimal" Precision="19" Scale="3" Nullable="false" />
+    <Property Name="user_name" Type="varchar" MaxLength="15" />
+    <Property Name="id_promo" Type="uniqueidentifier" />
+    <Property Name="no_promo_aplicado" Type="smallint" />
+  </EntityType>
+  <EntityType Name="venta_cancelada">
+    <Key>
+      <PropertyRef Name="id_pos" />
+      <PropertyRef Name="id_venta_cancel" />
+    </Key>
+    <Property Name="id_pos" Type="int" Nullable="false" />
+    <Property Name="id_venta_cancel" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="vendedor" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="fecha" Type="datetime" Nullable="false" />
+    <Property Name="total_vendido" Type="decimal" Precision="19" Scale="3" Nullable="false" />
+    <Property Name="pago_efectivo" Type="decimal" Precision="19" Scale="2" Nullable="false" />
+    <Property Name="pago_cheque" Type="decimal" Precision="19" Scale="2" Nullable="false" />
+    <Property Name="pago_vales" Type="decimal" Precision="19" Scale="2" Nullable="false" />
+    <Property Name="pago_tc" Type="decimal" Precision="19" Scale="2" Nullable="false" />
+    <Property Name="status" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="supervisor" Type="varchar" MaxLength="15" />
+    <Property Name="upload" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="venta_cancelada_articulo">
+    <Key>
+      <PropertyRef Name="id_pos" />
+      <PropertyRef Name="id_venta_cancel" />
+      <PropertyRef Name="no_articulo" />
+    </Key>
+    <Property Name="id_pos" Type="int" Nullable="false" />
+    <Property Name="id_venta_cancel" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="no_articulo" Type="bigint" Nullable="false" />
+    <Property Name="cod_barras" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="cantidad" Type="decimal" Precision="19" Scale="3" Nullable="false" />
+    <Property Name="articulo_ofertado" Type="bit" Nullable="false" />
+    <Property Name="precio_regular" Type="decimal" Precision="19" Scale="3" Nullable="false" />
+    <Property Name="cambio_precio" Type="bit" Nullable="false" />
+    <Property Name="precio_vta" Type="decimal" Precision="19" Scale="3" Nullable="false" />
+    <Property Name="porcent_desc" Type="decimal" Precision="19" Scale="3" Nullable="false" />
+    <Property Name="user_name" Type="varchar" MaxLength="15" />
+  </EntityType>
+  <Association Name="fk_articulo_articulo">
+    <End Role="articulo" Type="Self.articulo" Multiplicity="0..1" />
+    <End Role="articulo1" Type="Self.articulo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="articulo">
+        <PropertyRef Name="cod_barras" />
+      </Principal>
+      <Dependent Role="articulo1">
+        <PropertyRef Name="cod_asociado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_articulo_venta">
+    <End Role="articulo" Type="Self.articulo" Multiplicity="1" />
+    <End Role="venta_articulo" Type="Self.venta_articulo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="articulo">
+        <PropertyRef Name="cod_barras" />
+      </Principal>
+      <Dependent Role="venta_articulo">
+        <PropertyRef Name="cod_barras" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_articulo_venta_cancelada">
+    <End Role="articulo" Type="Self.articulo" Multiplicity="1" />
+    <End Role="venta_cancelada_articulo" Type="Self.venta_cancelada_articulo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="articulo">
+        <PropertyRef Name="cod_barras" />
+      </Principal>
+      <Dependent Role="venta_cancelada_articulo">
+        <PropertyRef Name="cod_barras" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_clasificacion_articulo">
+    <End Role="clasificacion" Type="Self.clasificacion" Multiplicity="1" />
+    <End Role="articulo" Type="Self.articulo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clasificacion">
+        <PropertyRef Name="id_clasificacion" />
+      </Principal>
+      <Dependent Role="articulo">
+        <PropertyRef Name="id_clasificacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_clasificacion_subclasificacion">
+    <End Role="clasificacion" Type="Self.clasificacion" Multiplicity="0..1" />
+    <End Role="clasificacion1" Type="Self.clasificacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clasificacion">
+        <PropertyRef Name="id_clasificacion" />
+      </Principal>
+      <Dependent Role="clasificacion1">
+        <PropertyRef Name="id_clasificacion_dep" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_proveedor_articulo">
+    <End Role="proveedor" Type="Self.proveedor" Multiplicity="1" />
+    <End Role="articulo" Type="Self.articulo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proveedor">
+        <PropertyRef Name="id_proveedor" />
+      </Principal>
+      <Dependent Role="articulo">
+        <PropertyRef Name="id_proveedor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_proveedor_direccion">
+    <End Role="proveedor" Type="Self.proveedor" Multiplicity="1" />
+    <End Role="direccion_proveedor" Type="Self.direccion_proveedor" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="proveedor">
+        <PropertyRef Name="id_proveedor" />
+      </Principal>
+      <Dependent Role="direccion_proveedor">
+        <PropertyRef Name="id_proveedor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_unidad_articulo">
+    <End Role="unidad_medida" Type="Self.unidad_medida" Multiplicity="1" />
+    <End Role="articulo" Type="Self.articulo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="unidad_medida">
+        <PropertyRef Name="id_unidad" />
+      </Principal>
+      <Dependent Role="articulo">
+        <PropertyRef Name="id_unidad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_venta_articulo">
+    <End Role="venta" Type="Self.venta" Multiplicity="1" />
+    <End Role="venta_articulo" Type="Self.venta_articulo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="venta">
+        <PropertyRef Name="id_venta" />
+        <PropertyRef Name="id_pos" />
+      </Principal>
+      <Dependent Role="venta_articulo">
+        <PropertyRef Name="id_venta" />
+        <PropertyRef Name="id_pos" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_venta_cancelada_articulo">
+    <End Role="venta_cancelada" Type="Self.venta_cancelada" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="venta_cancelada_articulo" Type="Self.venta_cancelada_articulo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="venta_cancelada">
+        <PropertyRef Name="id_venta_cancel" />
+        <PropertyRef Name="id_pos" />
+      </Principal>
+      <Dependent Role="venta_cancelada_articulo">
+        <PropertyRef Name="id_venta_cancel" />
+        <PropertyRef Name="id_pos" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AdminModelStoreContainer">
+    <EntitySet Name="articulo" EntityType="Self.articulo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="clasificacion" EntityType="Self.clasificacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="direccion_proveedor" EntityType="Self.direccion_proveedor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="proveedor" EntityType="Self.proveedor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="unidad_medida" EntityType="Self.unidad_medida" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="venta" EntityType="Self.venta" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="venta_articulo" EntityType="Self.venta_articulo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="venta_cancelada" EntityType="Self.venta_cancelada" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="venta_cancelada_articulo" EntityType="Self.venta_cancelada_articulo" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="fk_articulo_articulo" Association="Self.fk_articulo_articulo">
+      <End Role="articulo" EntitySet="articulo" />
+      <End Role="articulo1" EntitySet="articulo" />
+    </AssociationSet>
+    <AssociationSet Name="fk_articulo_venta" Association="Self.fk_articulo_venta">
+      <End Role="articulo" EntitySet="articulo" />
+      <End Role="venta_articulo" EntitySet="venta_articulo" />
+    </AssociationSet>
+    <AssociationSet Name="fk_articulo_venta_cancelada" Association="Self.fk_articulo_venta_cancelada">
+      <End Role="articulo" EntitySet="articulo" />
+      <End Role="venta_cancelada_articulo" EntitySet="venta_cancelada_articulo" />
+    </AssociationSet>
+    <AssociationSet Name="fk_clasificacion_articulo" Association="Self.fk_clasificacion_articulo">
+      <End Role="clasificacion" EntitySet="clasificacion" />
+      <End Role="articulo" EntitySet="articulo" />
+    </AssociationSet>
+    <AssociationSet Name="fk_clasificacion_subclasificacion" Association="Self.fk_clasificacion_subclasificacion">
+      <End Role="clasificacion" EntitySet="clasificacion" />
+      <End Role="clasificacion1" EntitySet="clasificacion" />
+    </AssociationSet>
+    <AssociationSet Name="fk_proveedor_articulo" Association="Self.fk_proveedor_articulo">
+      <End Role="proveedor" EntitySet="proveedor" />
+      <End Role="articulo" EntitySet="articulo" />
+    </AssociationSet>
+    <AssociationSet Name="fk_proveedor_direccion" Association="Self.fk_proveedor_direccion">
+      <End Role="proveedor" EntitySet="proveedor" />
+      <End Role="direccion_proveedor" EntitySet="direccion_proveedor" />
+    </AssociationSet>
+    <AssociationSet Name="fk_unidad_articulo" Association="Self.fk_unidad_articulo">
+      <End Role="unidad_medida" EntitySet="unidad_medida" />
+      <End Role="articulo" EntitySet="articulo" />
+    </AssociationSet>
+    <AssociationSet Name="fk_venta_articulo" Association="Self.fk_venta_articulo">
+      <End Role="venta" EntitySet="venta" />
+      <End Role="venta_articulo" EntitySet="venta_articulo" />
+    </AssociationSet>
+    <AssociationSet Name="fk_venta_cancelada_articulo" Association="Self.fk_venta_cancelada_articulo">
+      <End Role="venta_cancelada" EntitySet="venta_cancelada" />
+      <End Role="venta_cancelada_articulo" EntitySet="venta_cancelada_articulo" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
